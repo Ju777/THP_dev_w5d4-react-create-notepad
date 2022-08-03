@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React , {useState} from 'react';
+import Sidebar from './components/Sidebar';
+import NoteDisplay from './components/NoteDisplay';
+import MarkdownInput from './components/MarkdownInput';
+import './styles/App.css'
 
 function App() {
+  const [ input, setInput ] = useState(null)
+  function handleChange(e){
+    setInput(e.target.value);
+    console.log(input);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <div id="main-container">
+    <Sidebar />
+    <div id="note-part-container">
+      <NoteDisplay input = {input}/>
+      <MarkdownInput handleChange = { (e) => handleChange(e)}/>
+      </div>
+   </div>
+    
+  )
 }
 
 export default App;

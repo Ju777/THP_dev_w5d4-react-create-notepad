@@ -1,0 +1,9 @@
+#main-container{
+  border : 3px solid blue;
+  display : grid ;
+  grid-template-columns: 1fr 4fr;
+}
+
+#note-part-container{
+  border : 3px solid rgb(0, 0, 0);
+}
