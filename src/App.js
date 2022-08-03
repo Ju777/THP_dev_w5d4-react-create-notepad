@@ -6,6 +6,7 @@ import './styles/App.css'
 
 function App() {
   const [ input, setInput ] = useState(null)
+  
   function handleChange(e){
     setInput(e.target.value);
     console.log(input);
