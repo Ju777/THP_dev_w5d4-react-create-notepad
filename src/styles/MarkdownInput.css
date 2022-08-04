@@ -1,3 +1,14 @@
 #markdowninput-container{
     border : 3px solid rgb(255, 80, 80);
+    height : 50vh;
+    width : 72.5%;
+    position: fixed;
+    top : 50%;
+    left : 27.5%
+}
+
+#save-confirm
+{
+    color : rgb(255, 255, 255);
+    background-color: rgb(255, 115, 115);
 }
