@@ -32,8 +32,9 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
                             </div>
                             <div id="sidebar-text-container">
                             <p
+                                id="note-text-container"
                                 key = {nanoid()}
-                                className='sidebar-note-excerpt'>{Object.values(note)[0]}</p>
+                                >{Object.values(note)[0]}</p>
                             </div>
                         </div>
                         ))
@@ -45,7 +46,7 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
     function displayNoteToEdit(){
         console.log("displayNoteToEdit()", titleToEdit, textToEdit)
         return(
-            <div className='sidebar-note-container'>
+            // <div className='sidebar-note-container'>
                 <div id="edited-note-container">
                     <div id="editing-title-container">
                         <h4>EDITING : {titleToEdit}</h4>
@@ -68,7 +69,7 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
                     </div>
                     
                 </div>
-            </div>
+            // </div>
         )
     }
 
@@ -107,6 +108,12 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
         window.location.reload(false);
     }
 
+    function resetLocalStorage(){
+        localStorage.clear();
+        window.location.reload(false);
+    }
+
+
     return (
         <div id="sidebar-container">
         {/* <p>&lt;div id="sidebar-container"&gt;</p> */}
@@ -115,7 +122,7 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
 
                 <div id="app-title-container">
                     <h3>BLOC-NOTE</h3>
-                    <button onClick = { () => localStorage.clear() } >localStorage.clear()</button>
+                    <button onClick = { () => resetLocalStorage() } >localStorage.clear()</button>
                 </div>
                 
                 <div id="app-image-container">
@@ -127,10 +134,6 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
                 </div>
                 
             </div>
-            
-
-
-            { editButtonPosition ? displayNoteToEdit() : displayAllNotes() }
             
         </div>
     )
