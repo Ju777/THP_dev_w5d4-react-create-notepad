@@ -1,10 +1,10 @@
 #markdowninput-container{
-    /* border : 3px solid rgb(255, 80, 80); */
+    border : 1px solid rgb(22, 0, 118);
     height : 50vh;
-    width : 72.5%;
+    width : 67%;
     position: fixed;
     top : 0%;
-    left : 26%;
+    left : 33.3%;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
@@ -18,6 +18,12 @@
     /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.5); */
 }
 
+#new-note-title{
+    background-color: blue;
+    color : white;
+    padding: 15px;
+    border-radius: 0 25px 25px 0;
+}
 #input-area-container{
     /* border: 3px solid blue; */
     min-height: 40vh;
@@ -26,7 +32,7 @@
 #upper-part-container{
     /* border: 3px dotted red; */
     display : grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     height: 10vh;

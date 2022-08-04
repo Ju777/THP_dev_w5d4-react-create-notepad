@@ -1,12 +1,12 @@
 #notedisplay-container{
-    /* border : 3px solid rgb(4, 255, 0); */
+    border : 1px solid rgb(111, 111, 111);
     
     height: 50vh;
-    width : 72.5%;
+    width : 67%;
     position: fixed;
     top : 50%;
-    left : 26%;
-    padding: 10px;
+    left : 33.3%;
+    /* padding: 10px; */
 }
 
 #note-preview-container{

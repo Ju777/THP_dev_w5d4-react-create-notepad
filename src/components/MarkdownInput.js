@@ -25,9 +25,9 @@ function MarkdownInput({getText}){
 
     function handleSave(){
         // console.log('handlesave');
-        if (areInputsEmpty) {
-            alert("Le titre ou la note sont vides.")
-        } else {
+        // if (areInputsEmpty) {
+        //     alert("Le titre ou la note sont vides.")
+        // } else {
             localStorage.setItem(title, text);
             // console.log(localStorage);
             
@@ -36,7 +36,7 @@ function MarkdownInput({getText}){
             alert("Your note is saved.");
             setNewNoteButtonPosition(false);
             window.location.reload(false);
-        }       
+        // }       
     }
 
     function handleCancel(){
@@ -51,34 +51,36 @@ function MarkdownInput({getText}){
         return (
             <div id="input-area-container">
                 <div id="upper-part-container">
+                    <div>
+                        <h4 id="new-note-title">New note</h4>
+                    </div> 
                     <div id="note-title-contianer">
                         <input                    
                             type="text"
                             placeholder='enter your note title'
                             value = { title }
                             onChange = { (e) => handleChangeTitle(e)}
+                            autoFocus
                         />
                     </div>
                     <div id="save-button-container">
                         <button 
                             className='btn btn-success'
                             onClick = { () => handleSave() }
-                            >save
+                            >SAVE
                         </button>
                         <button 
                             className='btn btn-outline-danger'
                             onClick = { () => handleCancel() }
-                            >cancel
+                            >CANCEL
                         </button>
                     </div>
                 </div>
 
                 <div id="lower-part-container">
                     <textarea
-                        // id="textarea-input"
                         value = { text }
                         onChange={ (e) => handleChangeText(e)}
-                        autoFocus
                     />
 
                 </div>
