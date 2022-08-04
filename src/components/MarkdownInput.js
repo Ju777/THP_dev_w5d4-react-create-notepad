@@ -5,19 +5,16 @@ function MarkdownInput({getText}){
     
     const [ title, setTitle ] = useState('')
     const [ text, setText ] = useState('')
-    const [ saveConfirm, setSaveConfirm ] = useState('')
   
     function handleChangeTitle(e){
       setTitle(e.target.value);
       console.log('title', title);
-      setSaveConfirm('')
     }
   
     function handleChangeText(e){
       setText(e.target.value);
       getText(e.target.value)   
       console.log('text', text);
-      setSaveConfirm('')
     }
 
     function handleSave(){
@@ -26,10 +23,9 @@ function MarkdownInput({getText}){
         console.log(localStorage);
         setTitle('');
         setText('');
-        setSaveConfirm('Note is saved.')
+        alert("Your note is saved.");
+        window.location.reload(false);       
     }
-
-
 
     return (
         <div id="markdowninput-container">
@@ -37,12 +33,14 @@ function MarkdownInput({getText}){
             <p><input                    
                 type="text"
                 placeholder='nom de la note'
-                value = {title}
+                // value = {titleFromEdit ? titleFromEdit : title }
+                value = { title }
                 onChange = { (e) => handleChangeTitle(e)}
                 /></p>
             <p>
                 <textarea
-                    value = {text}
+                    // value = {textFromEdit ? textFromEdit : text }
+                    value = { text }
                     onChange={ (e) => handleChangeText(e)}
                     />
             </p>
@@ -50,10 +48,6 @@ function MarkdownInput({getText}){
                 className='btn btn-outline-danger'
                 onClick = { () => handleSave() }
                 >save</button>
-            <span
-                value = {saveConfirm}
-                id = "save-confirm">{saveConfirm}
-            </span>    
         </div>
     )
 }
