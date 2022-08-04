@@ -1,5 +1,3 @@
-... still on progress ... please be patient :).
-
 # REACT : create an Notepad app using localStorage.
 
 ## The today exercice's aim is to create an app allowing user to create an edit notes. A notepad like in a way. The notes will be stored through localStorage.
