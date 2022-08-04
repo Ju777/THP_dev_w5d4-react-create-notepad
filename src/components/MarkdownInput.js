@@ -1,11 +1,17 @@
 import React , {useState} from 'react';
 import '../styles/MarkdownInput.css'
 
-function MarkdownInput({getText, newNoteButtonPosition}){
+function MarkdownInput({getText}){
     
     const [ title, setTitle ] = useState('')
     const [ text, setText ] = useState('')
+    const [ newNoteButtonPosition, setNewNoteButtonPosition ] = useState(false)
   
+    function switchNewNoteButton(){
+        console.log("switchNewNoteButton")
+        setNewNoteButtonPosition(!newNoteButtonPosition)
+    }
+    
     function handleChangeTitle(e){
       setTitle(e.target.value);
       console.log('title', title);
@@ -24,38 +30,59 @@ function MarkdownInput({getText, newNoteButtonPosition}){
         setTitle('');
         setText('');
         alert("Your note is saved.");
+        setNewNoteButtonPosition(false);
         window.location.reload(false);       
     }
 
     function displayInputArea(){
         return (
-            <div>
-      
-            <p><input                    
-                type="text"
-                placeholder='nom de la note'
-                // value = {titleFromEdit ? titleFromEdit : title }
-                value = { title }
-                onChange = { (e) => handleChangeTitle(e)}
-                /></p>
-            <p>
-                <textarea
-                    // value = {textFromEdit ? textFromEdit : text }
-                    value = { text }
-                    onChange={ (e) => handleChangeText(e)}
+            <div id="input-area-container">
+                <div id="upper-part-container">
+                    <div id="note-title-contianer">
+                        <input                    
+                            type="text"
+                            placeholder='enter your note title'
+                            value = { title }
+                            onChange = { (e) => handleChangeTitle(e)}
+                        />
+                    </div>
+                    <div id="save-button-container">
+                        <button 
+                            className='btn btn-outline-danger'
+                            onClick = { () => handleSave() }
+                            >save
+                        </button>
+                    </div>
+                </div>
+
+                <div id="lower-part-container">
+                    <textarea
+                        // id="textarea-input"
+                        value = { text }
+                        onChange={ (e) => handleChangeText(e)}
+                        autoFocus
                     />
-            </p>
-            <button 
-                className='btn btn-outline-danger'
-                onClick = { () => handleSave() }
-                >save</button>
-                </div>)
+
+                </div>
+            </div>
+            )
+        }
+
+        function displayNewNoteButton(){
+            return(
+                <div id="new-note-button-container">
+                    <button
+                        onClick = { () => switchNewNoteButton() }
+                        className = "btn btn-primary"
+                    >Add a note</button>
+                </div>
+            )
         }
 
     return (
         <div id="markdowninput-container">
             {
-                newNoteButtonPosition ? displayInputArea() : <p>Add a note</p>
+                newNoteButtonPosition ? displayInputArea() : displayNewNoteButton()
             }
         </div>
     )

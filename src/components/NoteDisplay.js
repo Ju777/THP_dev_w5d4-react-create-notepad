@@ -11,8 +11,12 @@ function NoteDisplay({text}){
 
     return (
         <div id="notedisplay-container">
-            <p>NoteDisplay</p>
-            <p dangerouslySetInnerHTML={createMarkup()}></p>
+            <div id="note-preview-container">
+                <h3>Note preview</h3>
+                <div id="note-preview">
+                    <p dangerouslySetInnerHTML={createMarkup()}></p>
+                </div>
+            </div>
         </div>
     )
 }

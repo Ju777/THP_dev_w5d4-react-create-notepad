@@ -7,7 +7,6 @@ import './styles/App.css'
 function App() {
   const [ localStorageArray, setLocalStorageArray ] = useState([]);
   const [ text, setText ] = useState(null);
-  const [ newNoteButtonPosition, setNewNoteButtonPosition ] = useState(null);
 
   // Dans le useEffect : on récupère en un coup tout le contenu de localStorage existant.
   // Ce contenu est placé dans un tableau dont chaque élément est une note sous forme d'objet.
@@ -27,23 +26,17 @@ function App() {
     setText(text);
   }
 
-  function getNewNoteButtonPosition(position){
-    console.log("getNewNoteButtonPosition", position);
-    setNewNoteButtonPosition(position);
-    return position;
-  }
 
   return (
    <div id="main-container">
       <Sidebar
         localStorageArray = {localStorageArray}
         getText = {getText}
-        getNewNoteButtonPosition = {getNewNoteButtonPosition}
         />
       <NoteDisplay text = {text}/>
       <MarkdownInput
         getText = {getText}
-        newNoteButtonPosition = {newNoteButtonPosition}/>
+      />
    </div>
     
   )

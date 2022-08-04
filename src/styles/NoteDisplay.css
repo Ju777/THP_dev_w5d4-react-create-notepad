@@ -1,8 +1,31 @@
 #notedisplay-container{
-    border : 3px solid rgb(4, 255, 0);
+    /* border : 3px solid rgb(4, 255, 0); */
+    
     height: 50vh;
     width : 72.5%;
     position: fixed;
-    top : 0%;
-    left : 25%
+    top : 50%;
+    left : 26%;
+    padding: 10px;
+}
+
+#note-preview-container{
+    background-color: rgb(69, 69, 69);
+    max-width: 100%;
+    min-width: 20%;
+    height : 100%;
+    padding: 10px;
+    border-radius: 25px;
+    color : white;
+}
+
+#note-preview{
+    border : 2px dotted white;
+    max-width: 100%;
+    min-width: 20%;
+    height : 80%;
+    min-height: 20%;
+    padding: 10px;
+    border-radius: 25px;
+    color : white;
 }

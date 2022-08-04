@@ -1,14 +1,52 @@
 #markdowninput-container{
-    border : 3px solid rgb(255, 80, 80);
+    /* border : 3px solid rgb(255, 80, 80); */
     height : 50vh;
     width : 72.5%;
     position: fixed;
-    top : 50%;
-    left : 25%;
+    top : 0%;
+    left : 26%;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
 }
 
-#save-confirm
-{
-    color : rgb(255, 255, 255);
-    background-color: rgb(255, 115, 115);
+#new-note-button-container{
+    /* border: 3px solid blue; */
+    border-radius: 7px;
+    justify-self: center;
+    scale : 3;
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.5); */
+}
+
+#input-area-container{
+    /* border: 3px solid blue; */
+    min-height: 40vh;
+}
+
+#upper-part-container{
+    /* border: 3px dotted red; */
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 10vh;
+}
+
+#lower-part-container{
+    /* border: 3px dotted rgb(0, 101, 7); */
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    height: 30vh;
+    padding: 10px;
+
+}
+
+textarea{
+    width : 95%;
+    height: 100%;
+    border-radius: 25px;
+    border: 1px solid black;
+    /* border : none; */
+    padding: 10px;
 }

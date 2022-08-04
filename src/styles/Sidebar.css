@@ -10,16 +10,22 @@
   top : 0;
   left: 0;
   width : 25%;
-  height: 15vh;
+  height: 10vh;
   z-index: +1;
 }
+
+#all-notes-container{
+  border: 3px solid orange;
+  margin-top: 10vh;
+}
+
 .sidebar-note-container{
   border: 1px solid rgb(201, 201, 201);
   border-radius: 10px;
   margin : 25px;
   box-shadow: 3px 3px 3px rgb(185, 185, 185);
   position : relative ;
-  top : 15vh;
+  top : 0vh;
   width : 85%;
 }
 
