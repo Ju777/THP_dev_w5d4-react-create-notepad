@@ -113,7 +113,6 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
         window.location.reload(false);
     }
 
-
     return (
         <div id="sidebar-container">
         {/* <p>&lt;div id="sidebar-container"&gt;</p> */}
@@ -134,6 +133,10 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
                 </div>
                 
             </div>
+            
+
+
+            { editButtonPosition ? displayNoteToEdit() : displayAllNotes() }
             
         </div>
     )
