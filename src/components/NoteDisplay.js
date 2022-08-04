@@ -9,8 +9,6 @@ function NoteDisplay({text}){
         return {__html: converter.makeHtml(text)};
     }
 
-
-
     return (
         <div id="notedisplay-container">
             <p>NoteDisplay</p>

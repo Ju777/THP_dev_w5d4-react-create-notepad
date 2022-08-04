@@ -1,16 +1,17 @@
 #sidebar-container{
     border : 3px solid rgb(255, 0, 0);
-    width : 100%
+    width : 100%;
 }
 
 #sidebar-title{
   border: 3px solid black;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgb(255, 255, 255);
   position : fixed;
   top : 0;
   left: 0;
   width : 25%;
   height: 15vh;
+  z-index: +1;
 }
 .sidebar-note-container{
   border: 1px solid rgb(201, 201, 201);
@@ -19,7 +20,6 @@
   box-shadow: 3px 3px 3px rgb(185, 185, 185);
   position : relative ;
   top : 15vh;
-  /* z-index: -1; */
   width : 85%;
 }
 
@@ -30,7 +30,6 @@
   padding: 10px;
 }
 .sidebar-note-excerpt{
-  background-color: #ffffff;
   color : rgb(0, 0, 0);
   padding: 10px;
   text-overflow: ellipsis;

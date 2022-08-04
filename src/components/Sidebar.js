@@ -1,18 +1,18 @@
 import React , {useState} from 'react';
 import '../styles/Sidebar.css'
 
-function Sidebar({localStorageArray}){
+function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
     const [ editButtonPosition, setEditButtonPosition ] = useState(false);
-    const [ title, setTitle ] = useState('');
-    const [ text, setText ] = useState('');
     const [ titleToEdit, setTitleToEdit ] = useState('');
     const [ textToEdit, setTextToEdit ] = useState('');
+    const [ newNoteButtonPosition, setNewNoteButtonPosition ] = useState(false);
 
     function displayAllNotes(){
         return(
             localStorageArray.map(note => (
                 <div className='sidebar-note-container'>
-                    <p>&lt;div className='sidebar-note-container'&gt;</p>
+                    {/* <p>&lt;div className='sidebar-note-container'&gt;</p> */}
+                    
 
                     <h6 className='sidebar-note-title'>Note : {Object.keys(note)[0]}</h6>
 
@@ -25,6 +25,29 @@ function Sidebar({localStorageArray}){
         )
     }
 
+    function displayNoteToEdit(){
+        console.log("displayNoteToEdit()", titleToEdit, textToEdit)
+        return(
+            <div className='sidebar-note-container'>
+                <p>EDITING : {titleToEdit}</p>
+                <textarea
+                    value = {textToEdit}
+                    onChange = { (e) => updateTextToEdit(e) }
+                    />
+
+                <br/>
+                <button onClick = {saveEditedText} >OK</button>
+                <button onClick = {cancelEditing} >CANCEL</button>
+            </div>
+        )
+    }
+
+    function switchNewNoteButton(){
+        setNewNoteButtonPosition(!newNoteButtonPosition);
+        // console.log("switchNewNoteButton()", newNoteButtonPosition);
+        getNewNoteButtonPosition(newNoteButtonPosition)
+    }
+
     function switchEditButton(titleToEdit, textToEdit){
         console.log("switchEditButton()", titleToEdit, textToEdit)
         setEditButtonPosition(true);
@@ -33,24 +56,10 @@ function Sidebar({localStorageArray}){
         displayNoteToEdit()
     }
 
-    function displayNoteToEdit(){
-        console.log("displayNoteToEdit()", titleToEdit, textToEdit)
-        return(
-            <div className='sidebar-note-container'>
-                <p>NOTE TO EDIT</p>
-                <p>Title : {titleToEdit}</p>
-                <textarea
-                    value = {textToEdit}
-                    onChange = { (e) => updateTextToEdit(e) }
-                    />
-                <button onClick = {saveEditedText} >OK</button>
-            </div>
-        )
-    }
-
     function updateTextToEdit(e){
         console.log("updateTextToEdit()", e.target.value)
         setTextToEdit(e.target.value);
+        getText(e.target.value)
     }
 
     function saveEditedText(){
@@ -60,24 +69,36 @@ function Sidebar({localStorageArray}){
         window.location.reload(false);
     }
 
+    function cancelEditing(){
+        setEditButtonPosition(false);
+        getText('');
+    }
+    
     function handleRemove(title){
         localStorage.removeItem(title);
         console.log('handleRemove');
-        alert("Your note is removed.");
+        alert("Your note has been removed.");
         window.location.reload(false);
     }
 
     return (
         <div id="sidebar-container">
-        <p>&lt;div id="sidebar-container"&gt;</p>
+        {/* <p>&lt;div id="sidebar-container"&gt;</p> */}
             <div id = "sidebar-title">
-            <p>&lt;div id = "sidebar-title"&gt;</p>
-                <button className='btn btn-primary'>Nouvelle note</button>
-                <button onClick = { () => localStorage.clear() } >localStorage.clear()</button>
+                {/* <p><p>&lt;div id="sidebar-title"&gt;</p></p> */}
+                <h3>
+                    MON BLOC-NOTE
+                    <button
+                        className='btn btn-primary'
+                        onClick ={switchNewNoteButton}>Nouvelle note
+                    </button>
+                </h3>
+                {/* <button onClick = { () => localStorage.clear() } >localStorage.clear()</button> */}
             </div>
-            { 
-                editButtonPosition ? displayNoteToEdit() : displayAllNotes()   
-            }
+            
+            <br/><br/><br/>
+            <h4>Your notes :</h4>
+            { editButtonPosition ? displayNoteToEdit() : displayAllNotes() }
             
         </div>
     )

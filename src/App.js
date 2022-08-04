@@ -2,24 +2,15 @@ import React , {useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import NoteDisplay from './components/NoteDisplay';
 import MarkdownInput from './components/MarkdownInput';
-// import RightSide from './components/RightSide';
 import './styles/App.css'
 
 function App() {
   const [ localStorageArray, setLocalStorageArray ] = useState([]);
-  const [ title, setTitle ] = useState(null);
   const [ text, setText ] = useState(null);
+  const [ newNoteButtonPosition, setNewNoteButtonPosition ] = useState(null);
 
-  function getText(text){
-      setText(text);
-  }
-
-  // function getFromEdit(title, text){
-  //   console.log("On vient de sidebar !", title, text)
-  //   setTitle(title);
-  //   setText(text);
-  // }
-
+  // Dans le useEffect : on récupère en un coup tout le contenu de localStorage existant.
+  // Ce contenu est placé dans un tableau dont chaque élément est une note sous forme d'objet.
   useEffect( () => {
     console.clear();
     const storageKeys = Object.keys(localStorage);
@@ -32,18 +23,27 @@ function App() {
     setLocalStorageArray(finalArray);
   },[])
 
+  function getText(text){
+    setText(text);
+  }
+
+  function getNewNoteButtonPosition(position){
+    console.log("getNewNoteButtonPosition", position);
+    setNewNoteButtonPosition(position);
+    return position;
+  }
+
   return (
    <div id="main-container">
-    <Sidebar
-      localStorageArray = {localStorageArray}
-      // getFromEdit = {getFromEdit}
-      />
-    <NoteDisplay text = {text}/>
-    <MarkdownInput
+      <Sidebar
+        localStorageArray = {localStorageArray}
         getText = {getText}
-        // titleFromEdit = {title}
-        // textFromEdit = {text}
-    />
+        getNewNoteButtonPosition = {getNewNoteButtonPosition}
+        />
+      <NoteDisplay text = {text}/>
+      <MarkdownInput
+        getText = {getText}
+        newNoteButtonPosition = {newNoteButtonPosition}/>
    </div>
     
   )

@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import '../styles/MarkdownInput.css'
 
-function MarkdownInput({getText}){
+function MarkdownInput({getText, newNoteButtonPosition}){
     
     const [ title, setTitle ] = useState('')
     const [ text, setText ] = useState('')
@@ -27,9 +27,10 @@ function MarkdownInput({getText}){
         window.location.reload(false);       
     }
 
-    return (
-        <div id="markdowninput-container">
-            <p>MarkdownInput</p>
+    function displayInputArea(){
+        return (
+            <div>
+      
             <p><input                    
                 type="text"
                 placeholder='nom de la note'
@@ -48,6 +49,14 @@ function MarkdownInput({getText}){
                 className='btn btn-outline-danger'
                 onClick = { () => handleSave() }
                 >save</button>
+                </div>)
+        }
+
+    return (
+        <div id="markdowninput-container">
+            {
+                newNoteButtonPosition ? displayInputArea() : <p>Add a note</p>
+            }
         </div>
     )
 }
