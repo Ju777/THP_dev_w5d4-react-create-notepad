@@ -15,10 +15,16 @@ function Sidebar({localStorageArray, getText, getNewNoteButtonPosition}){
                     localStorageArray.map(note => (
                         <div key = {nanoid()} className='sidebar-note-container'>
                             {/* <p>&lt;div className='sidebar-note-container'&gt;</p> */}
-                            <h6 key = {nanoid()} className='sidebar-note-title'>Note : {Object.keys(note)[0]}</h6>
+                            <div id="sidebar-title-container">
+                                <h6 key = {nanoid()} className='sidebar-note-title'>Title : {Object.keys(note)[0]}</h6>
+                                <div id="editing-buttons-container">
+                                    <button key = {nanoid()} onClick = { () => { switchEditButton(Object.keys(note)[0], Object.values(note)[0]) }}>EDIT NOTE</button>
+                                    <button key = {nanoid()} onClick={ () => handleRemove(Object.keys(note)[0]) }>SUPPR</button>
+                                </div>
+                            </div>
+                            <div id="sidebar-text-container">
                             <p key = {nanoid()} className='sidebar-note-excerpt'>{Object.values(note)[0]}</p>
-                            <button key = {nanoid()} onClick = { () => { switchEditButton(Object.keys(note)[0], Object.values(note)[0]) }}>EDIT NOTE</button>
-                            <button key = {nanoid()} onClick={ () => handleRemove(Object.keys(note)[0]) }>SUPPR</button>
+                            </div>
                         </div>
                         ))
                 }

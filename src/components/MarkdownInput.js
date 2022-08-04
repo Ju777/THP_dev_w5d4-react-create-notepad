@@ -24,14 +24,27 @@ function MarkdownInput({getText}){
     }
 
     function handleSave(){
-        console.log('handlesave');
-        localStorage.setItem(title, text);
-        console.log(localStorage);
-        setTitle('');
-        setText('');
-        alert("Your note is saved.");
+        // console.log('handlesave');
+        if (areInputsEmpty) {
+            alert("Le titre ou la note sont vides.")
+        } else {
+            localStorage.setItem(title, text);
+            // console.log(localStorage);
+            
+            setTitle('');
+            setText('');
+            alert("Your note is saved.");
+            setNewNoteButtonPosition(false);
+            window.location.reload(false);
+        }       
+    }
+
+    function handleCancel(){
         setNewNoteButtonPosition(false);
-        window.location.reload(false);       
+    }
+
+    function areInputsEmpty(){
+        return title === '' || text === '' ? true : false
     }
 
     function displayInputArea(){
@@ -48,9 +61,14 @@ function MarkdownInput({getText}){
                     </div>
                     <div id="save-button-container">
                         <button 
-                            className='btn btn-outline-danger'
+                            className='btn btn-success'
                             onClick = { () => handleSave() }
                             >save
+                        </button>
+                        <button 
+                            className='btn btn-outline-danger'
+                            onClick = { () => handleCancel() }
+                            >cancel
                         </button>
                     </div>
                 </div>
