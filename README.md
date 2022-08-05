@@ -7,3 +7,4 @@
     - Go in the repo directory and launch 'npm start'.
     - Your default browser should open automatically.
     - If not, browse localhost:3000 .
+    - You can visit https://thp-dev-w5d4-react-create-notepad.vercel.app/ as well.
