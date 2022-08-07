@@ -1,45 +1,47 @@
-import React , {useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import NoteDisplay from './components/NoteDisplay';
+import logo from './logo.svg';
+import './App.css';
+import NotesContainer from './components/NotesContainer';
 import MarkdownInput from './components/MarkdownInput';
-import './styles/App.css'
+import NotePreview from './components/NotePreview';
+import InputNoteContext from './components/InputNoteContext';
+import EditNoteContext from './components/EditNoteContext';
+import { useState } from 'react';
 
 function App() {
-  const [ localStorageArray, setLocalStorageArray ] = useState([]);
+
+  const [ title, setTitle ] = useState(null);
   const [ text, setText ] = useState(null);
+  const [ editTitle, setEditTitle ] = useState(null);
+  const [ editText, setEditText ] = useState(null);
 
-  // Dans le useEffect : on récupère en un coup tout le contenu de localStorage existant.
-  // Ce contenu est placé dans un tableau dont chaque élément est une note sous forme d'objet.
-  useEffect( () => {
-    console.clear();
-    const storageKeys = Object.keys(localStorage);
-    const storageValues = Object.values(localStorage);
-    const finalArray = [];
-    for(let i = 0 ; i < localStorage.length ; i++){
-      finalArray[i] = { [storageKeys[i]]: storageValues[i] }
-    }
-    console.log(storageKeys, storageValues, finalArray);
-    setLocalStorageArray(finalArray);
-  },[])
-
-  function getText(text){
-    setText(text);
+  const inputNoteContextValue = {
+    inputTitle : title,
+    updateInputTitle : setTitle,
+    inputText : text,
+    updateInputText : setText
   }
 
+  const editNoteContextValue = {
+    titleToEdit: editTitle,
+    updateTitleToEdit : setEditTitle,
+    textToEdit : editText,
+    updateTextToEdit : setEditText
+
+  }
 
   return (
-   <div id="main-container">
-      <Sidebar
-        localStorageArray = {localStorageArray}
-        getText = {getText}
-        />
-      <NoteDisplay text = {text}/>
-      <MarkdownInput
-        getText = {getText}
-      />
-   </div>
-    
-  )
+    <InputNoteContext.Provider value = {inputNoteContextValue}>
+      <EditNoteContext.Provider value = {editNoteContextValue}>
+        <div className="main-container">
+
+          <NotesContainer/>
+          <MarkdownInput/>
+          <NotePreview/>
+
+        </div>
+      </EditNoteContext.Provider>
+    </InputNoteContext.Provider>
+  );
 }
 
 export default App;

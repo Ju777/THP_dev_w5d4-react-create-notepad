@@ -1,109 +1,72 @@
-import React , {useState} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import EditNoteContext from './EditNoteContext';
+import InputNoteContext from './InputNoteContext';
+
 import '../styles/MarkdownInput.css'
 
-function MarkdownInput({getText}){
-    
-    const [ title, setTitle ] = useState('')
-    const [ text, setText ] = useState('')
-    const [ newNoteButtonPosition, setNewNoteButtonPosition ] = useState(false)
-  
-    function switchNewNoteButton(){
-        console.log("switchNewNoteButton")
-        setNewNoteButtonPosition(!newNoteButtonPosition)
-    }
-    
-    function handleChangeTitle(e){
-      setTitle(e.target.value);
-      console.log('title', title);
-    }
-  
-    function handleChangeText(e){
-      setText(e.target.value);
-      getText(e.target.value)   
-      console.log('text', text);
+const MarkdownInput = () => {
+
+    const [ title, setTitle ] = useState('');
+    const [ text, setText ] = useState('');
+    const { updateInputTitle, updateInputText} = useContext(InputNoteContext);
+    const { titleToEdit, updateTitleToEdit, textToEdit, updateTextToEdit } = useContext(EditNoteContext);
+
+    useEffect( () => {
+        titleToEdit ? setTitle(titleToEdit) : setTitle('');
+        textToEdit ? setText(textToEdit) : setText('');
+    }, [titleToEdit, textToEdit])
+
+    const handleChangeTitle = (e) => {
+        // console.log(e.target.value);
+        setTitle(e.target.value);
+        updateInputTitle(e.currentTarget.value);
+        
     }
 
-    function handleSave(){
-        // console.log('handlesave');
-        // if (areInputsEmpty) {
-        //     alert("Le titre ou la note sont vides.")
-        // } else {
-            localStorage.setItem(title, text);
-            // console.log(localStorage);
-            
-            setTitle('');
-            setText('');
-            alert("Your note is saved.");
-            setNewNoteButtonPosition(false);
-            window.location.reload(false);
-        // }       
+    const handleChangeText = (e) => {
+        // console.log(e.target.value);
+        setText(e.target.value);
+        updateInputText(e.currentTarget.value);
     }
 
-    function handleCancel(){
-        setNewNoteButtonPosition(false);
+    const handleSave = (title, text) => {
+        var currentNotes = JSON.parse(localStorage["NOTEPAD"]);
+        var updatingNotes = {...currentNotes, [title] : text };
+        localStorage.setItem("NOTEPAD", JSON.stringify(updatingNotes));
+        setTitle('');
+        setText('');
+        // console.log(localStorage);
+        window.location.reload(false);
     }
 
-    function areInputsEmpty(){
-        return title === '' || text === '' ? true : false
-    }
 
-    function displayInputArea(){
-        return (
-            <div id="input-area-container">
-                <div id="upper-part-container">
-                    <div>
-                        <h4 id="new-note-title">New note</h4>
-                    </div> 
-                    <div id="note-title-contianer">
-                        <input                    
-                            type="text"
-                            placeholder='enter your note title'
-                            value = { title }
-                            onChange = { (e) => handleChangeTitle(e)}
-                            autoFocus
-                        />
-                    </div>
-                    <div id="save-button-container">
-                        <button 
-                            className='btn btn-success'
-                            onClick = { () => handleSave() }
-                            >SAVE
-                        </button>
-                        <button 
-                            className='btn btn-outline-danger'
-                            onClick = { () => handleCancel() }
-                            >CANCEL
-                        </button>
-                    </div>
-                </div>
+    return(
+        <div id = "input-container">
+            <h3>Add a note (HTML/ Markdown supported)</h3><p><button onClick = { () => handleSave(title, text) }>SAVE</button></p>
 
-                <div id="lower-part-container">
-                    <textarea
-                        value = { text }
-                        onChange={ (e) => handleChangeText(e)}
+            <div id="input-title-container">
+                <input
+                    type = "text"
+                    onChange = { (e) => handleChangeTitle(e) }
+                    value = {title}
+                    placeholder = "What title ?"
+                    className='my-2'
                     />
-
-                </div>
             </div>
-            )
-        }
 
-        function displayNewNoteButton(){
-            return(
-                <div id="new-note-button-container">
-                    <button
-                        onClick = { () => switchNewNoteButton() }
-                        className = "btn btn-primary"
-                    >Add a note</button>
-                </div>
-            )
-        }
+            <div id="input-text-container">
+                <textarea
+                    value = {text}
+                    onChange = { (e) => handleChangeText(e) }
+                    placeholder  = "What text ?"
+                    rows = "4"
+                    cols = "91">
+                </textarea>
+               
+            </div>
 
-    return (
-        <div id="markdowninput-container">
-            {
-                newNoteButtonPosition ? displayInputArea() : displayNewNoteButton()
-            }
+            
+            {/* <p><button onClick = { () => localStorage.clear() }>localStorage.clear</button></p> */}
         </div>
     )
 }

@@ -1,58 +1,13 @@
-#markdowninput-container{
-    border : 1px solid rgb(22, 0, 118);
-    height : 50vh;
-    width : 67%;
+#input-container{
+    border : 1px solid rgb(0, 0, 0);
+    width : 70%;
     position: fixed;
     top : 0%;
-    left : 33.3%;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
+    left : 30%;
+    height: 50vh;
+    padding : 20px;
 }
 
-#new-note-button-container{
-    /* border: 3px solid blue; */
-    border-radius: 7px;
-    justify-self: center;
-    scale : 3;
-    /* box-shadow: 3px 3px 3px rgba(0, 0, 255, 0.5); */
-}
-
-#new-note-title{
-    background-color: blue;
-    color : white;
-    padding: 15px;
-    border-radius: 0 25px 25px 0;
-}
-#input-area-container{
-    /* border: 3px solid blue; */
-    min-height: 40vh;
-}
-
-#upper-part-container{
-    /* border: 3px dotted red; */
-    display : grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    align-items: center;
-    height: 10vh;
-}
-
-#lower-part-container{
-    /* border: 3px dotted rgb(0, 101, 7); */
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    height: 30vh;
-    padding: 10px;
-
-}
-
-textarea{
-    width : 95%;
-    height: 100%;
-    border-radius: 25px;
-    border: 1px solid black;
-    /* border : none; */
-    padding: 10px;
+input{
+    border : none;
 }

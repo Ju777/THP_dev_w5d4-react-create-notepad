@@ -1,0 +1,9 @@
+#preview-container{
+    border : 1px solid black;
+    width : 70%;
+    position: fixed;
+    top : 50%;
+    left : 30%;
+    height: 50vh;
+    padding : 20px;
+}
