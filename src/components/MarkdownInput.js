@@ -42,7 +42,9 @@ const MarkdownInput = () => {
 
     return(
         <div id = "input-container">
-            <h3>Add a note (HTML/ Markdown supported)</h3><p><button onClick = { () => handleSave(title, text) }>SAVE</button></p>
+            <h3>Add a note (HTML/ Markdown supported)</h3>
+            <p><button onClick = { () => handleSave(title, text) }>SAVE</button></p>
+            {/* <p><button onClick = { () => localStorage.clear() }>localStorage.clear</button></p> */}
 
             <div id="input-title-container">
                 <input
@@ -61,12 +63,8 @@ const MarkdownInput = () => {
                     placeholder  = "What text ?"
                     rows = "4"
                     cols = "91">
-                </textarea>
-               
+                </textarea>               
             </div>
-
-            
-            {/* <p><button onClick = { () => localStorage.clear() }>localStorage.clear</button></p> */}
         </div>
     )
 }

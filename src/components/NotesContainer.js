@@ -10,15 +10,10 @@ const NotesContainer = () => {
 
     useEffect( () => {
          if (!localStorage["NOTEPAD"]) {
-            localStorage.setItem("NOTEPAD", JSON.stringify({'Your first note':'Edit me !'}))
+            localStorage.setItem("NOTEPAD", JSON.stringify({'Your first note':'Edit me !'}));
+            setCurrentNotes(JSON.parse(localStorage["NOTEPAD"]));
          }
-        //     setCurrentNotes(JSON.parse(localStorage["NOTEPAD"])) :
-        //     // console.log("localStorage[\"NOTEPAD\"] existe ==>", localStorage) :
-        //     // localStorage.setItem("NOTEPAD", JSON.stringify({'Your first note':'Edit me !'}));
-        //     console.log("localStorage[\"NOTEPAD\"] n'existe pas")
-
-
-        // console.log('useEffect', currentNotes);
+       
         const titles = Object.keys(currentNotes);
         const texts = Object.values(currentNotes);
         const finalArray = [];
@@ -30,7 +25,7 @@ const NotesContainer = () => {
         }
         // console.log('finalArray', finalArray);
         setArrayOfNotes(finalArray)
-    }, []);
+    }, [currentNotes]);
 
     const { updateTitleToEdit, updateTextToEdit } = useContext(EditNoteContext);
 
