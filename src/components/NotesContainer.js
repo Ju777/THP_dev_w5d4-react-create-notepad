@@ -10,7 +10,7 @@ const NotesContainer = () => {
 
     useEffect( () => {
          if (!localStorage["NOTEPAD"]) {
-            localStorage.setItem("NOTEPAD", JSON.stringify({'Your first note':'Edit me !'}));
+            localStorage.setItem("NOTEPAD", JSON.stringify({'Your first note':'Edit or remove me !'}));
             setCurrentNotes(JSON.parse(localStorage["NOTEPAD"]));
          }
        
